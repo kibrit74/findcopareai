@@ -1,4 +1,4 @@
-web: gunicorn app:app
+web: gunicorn --workers 2 --bind 0.0.0.0:$PORT app:app --log-level info
 
 
 
