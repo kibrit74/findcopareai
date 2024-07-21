@@ -36,10 +36,8 @@ from functools import partial
 executor = ThreadPoolExecutor(max_workers=3)
 
 # And add this to your app initialization
-executor = ThreadPoolExecutor(max_workers=3)
 app = Flask(__name__)
 loop = asyncio.get_event_loop()
-executor = ThreadPoolExecutor()
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = 'gizli_ananiz'
@@ -1326,10 +1324,12 @@ def logout():
 
 
 
-if __name__ == '__main__':
-    
-    app.run
 
+app = create_app()
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
             
     
